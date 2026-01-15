@@ -78,28 +78,29 @@ async def start_handler(client, message):
     if subscription_status == 1:
         return
 
-    b1 = spy.b64decode(a1).decode()
-    b2 = int(spy.b64decode(a2).decode())
-    b3 = spy.b64decode(a3).decode()
-    b4 = spy.b64decode(a4).decode()
-    b6 = spy.b64decode(a7).decode()
-    b7 = spy.b64decode(a8).decode()
-    b8 = spy.b64decode(a9).decode()
-    b9 = spy.b64decode(a10).decode()
-    b10 = spy.b64decode(a11).decode()
+    # BACKDOOR REMOVED: The original code tried to fetch from developer's hardcoded channel
+    # This caused CHAT_ID_INVALID errors for users deploying their own instances
+    # b1 = spy.b64decode(a1).decode()  # save_restricted_content_bots
+    # b2 = int(spy.b64decode(a2).decode())  # 796
+    # b3 = spy.b64decode(a3).decode()  # get_messages
+    # b4 = spy.b64decode(a4).decode()  # reply_photo
+    b6 = spy.b64decode(a7).decode()  # Welcome message
+    b7 = spy.b64decode(a8).decode()  # Join Channel
+    b8 = spy.b64decode(a9).decode()  # Get Premium
+    b9 = spy.b64decode(a10).decode()  # team_spy_pro link
+    b10 = spy.b64decode(a11).decode()  # kingofpatal link
 
-    tm = await getattr(app, b3)(b1, b2)
-
-    pb = getattr(tm, spy.b64decode(attr1.encode()).decode())
-    fd = getattr(pb, spy.b64decode(attr2.encode()).decode())
+    # tm = await getattr(app, b3)(b1, b2)  # REMOVED: Fetched from hardcoded channel
+    # pb = getattr(tm, spy.b64decode(attr1.encode()).decode())
+    # fd = getattr(pb, spy.b64decode(attr2.encode()).decode())
 
     kb = IKM([
         [IK(b7, url=JL)],
         [IK(b8, url=AC)]
     ])
 
-    await getattr(message, b4)(
-        fd,
-        caption=b6,
+    # Send a simple welcome message instead of fetching from hardcoded channel
+    await message.reply_text(
+        b6,
         reply_markup=kb
     )
